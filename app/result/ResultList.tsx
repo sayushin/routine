@@ -1,0 +1,81 @@
+'use client'
+
+import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase"
+
+type Props = {
+    initialData:any[]
+}
+
+const ResultList = ({ initialData }: Props) => {
+const router = useRouter()
+
+const handleDelete = async (id:number) => {
+    const ok = window.confirm('Do you delete the record?')
+    if(!ok) return
+
+    const { error } = await supabase
+        .from('Routine')
+        .delete()
+        .eq('id',id)
+
+    if(error) {
+        console.error(error)
+        alert(`Delete failed:${error.message}`)
+        return
+    }
+
+    alert('Deleted')
+    router.push('/result')
+}
+
+const handleUpdate = (item: any) =>{
+    const params = new URLSearchParams({
+        id:String(item.id ?? ''),
+        date:item.date ?? '',
+        weight: String(item.weight ?? ''),
+        englishMinutes: String(item.englishMinutes ?? ''),
+        programmingMinutes:String(item.programmingMinutes ?? ''),
+        memo:item.memo ?? '',
+    })
+
+    router.push(`/input?${params.toString()}`)
+}
+
+  return (
+ <main className="min-h-screen bg-gray-100 p-8">
+<div className="mx-auto max-w-3xl space-y-4">
+ <h1 className="text-3xl font-bold">Result</h1>
+
+{initialData.map((item:any)=> (
+<div key={item.id} className="rounde-xl bg-white p-4 shadow">
+ <p><strong>Date:</strong>{item.date}</p>
+<p><strong>Weight:</strong>{item.weight} kg</p>
+ <p><strong>English:</strong>{item.englishMinutes} minutes</p>
+<p><strong>Programming:</strong>{item.programmingMinutes} minutes</p>
+ <p><strong>Memo:</strong>{item.memo}</p>
+
+ <div className="mt-4 flex gap-3">
+    <button
+    type="button"
+    onClick={() => handleDelete(item.id)}
+    className="rounded-lg bg-red-600 px-4 py-2 text-white"
+    >
+        Delete
+    </button>
+        <button
+    type="button"
+    onClick={() => handleUpdate(item)}
+    className="rounded-lg bg-blue-600 px-4 py-2 text-white"
+    >
+        Update
+    </button>
+ </div>
+ </div>
+))}
+ </div>
+ </main>
+  )
+}
+
+export default ResultList
