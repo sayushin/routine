@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: "Maneging my routines app",
   icons:{
     icon:"/icon.png",
+    apple:"/icon.png",
   }
 };
 
