@@ -1,33 +1,13 @@
-'use client'
-
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 
-export default function Home() {
+const Home = async () => {
+const { data:goals, error } = await supabase
+.from("Goal")
+.select("*")
 
-const router =useRouter()
-
-const [goals, setGoalList] =useState<any[]>([])
-
-useEffect(() => {
- const fetchData = async () => {
-  const{data} = await supabase
-  .from('Goal')
-  .select('*')
-  console.log(data)
-  if(data) {
-    setGoalList(data)
-  }
- }
-
- const data = fetchData()
-  },[])
-
-const setGoals = () => {
-  console.log('setgoals')
-  router.push('/goal/edit')
-  
+if(error) {
+  return <div>Data Fetching Error: {error.message}</div>
 }
 
   return (
@@ -50,14 +30,20 @@ const setGoals = () => {
   ))
   }
 </div>
-<button 
-onClick={setGoals}
-className="rounded-lg bg-blue-600 p-4 text-white my-6 w-full text-xl">
+<Link 
+  href="/input"
+  className="block rounded-lg bg-blue-600 p-4 text-white my-6 w-full text-xl">
+  Record Routines
+</Link>
+<Link 
+  href="/goal/edit"
+  className="block rounded-lg bg-gray-400 p-4 text-white my-10 w-full text-xl">
   Set Goals
-
-</button>
+</Link>
 
 </div>
 </main>  
 )
 }
+
+export default Home
