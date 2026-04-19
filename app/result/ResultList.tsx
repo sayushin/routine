@@ -50,7 +50,7 @@ const handleUpdate = (item: any) =>{
 {initialData.map((item:any)=> (
 <div key={item.id} className="rounde-xl bg-white p-4 shadow">
  <p><strong>Date:</strong>{item.date}</p>
-<p><strong>Weight:</strong>{item.weight} kg</p>
+ <p><strong>Training:</strong>{item.trainingMinutes} minutes</p>
  <p><strong>English:</strong>{item.englishMinutes} minutes</p>
 <p><strong>Programming:</strong>{item.programmingMinutes} minutes</p>
  <p><strong>Memo:</strong>{item.memo}</p>
