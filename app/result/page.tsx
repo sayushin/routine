@@ -14,6 +14,16 @@ const totalTraining = data?.reduce(
     0
 ) ?? 0
 
+const totalEnglish = data?.reduce(
+    (sum,item) => sum + Number(item.englishMinutes ?? 0),
+    0
+) ?? 0
+
+const totalProgramming = data?.reduce(
+    (sum,item) => sum + Number(item.programmingMinutes ?? 0),
+    0
+) ?? 0
+
 if(error) {
     console.error(error)
     return <div>Failed to load</div>
@@ -24,6 +34,8 @@ return (
 <ResultList 
     initialData={(data ?? [])}
     totalTraining={totalTraining}
+    totalEnglish={totalEnglish}
+    totalProgramming={totalProgramming}
 />
 )
 }

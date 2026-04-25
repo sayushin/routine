@@ -6,21 +6,17 @@ import { supabase } from "@/lib/supabase"
 type Props = {
     initialData:any[]
     totalTraining:number
+    totalEnglish:number
+    totalProgramming:number
 }
 
-const ResultList = ({ initialData,totalTraining }: Props) => {
+const ResultList = ({
+    initialData,
+    totalTraining,
+    totalEnglish,
+    totalProgramming,
+}: Props) => {
 const router = useRouter()
-
-const totalEnglish = initialData.reduce(
-    (sum,item) => sum + Number(item.englishMinutes ?? 0),
-    0
-)
-
-const totalProgramming = initialData.reduce(
-    (sum,item) => sum + Number(item.programmingMinutes ?? 0),
-    0
-)
-
 
 const handleDelete = async (id:number) => {
     const ok = window.confirm('Do you delete the record?')
