@@ -13,7 +13,7 @@ const BottomNav = () =>  {
     const pathname = usePathname()
 
     return(
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white md:hidden py-3">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white py-3">
     <div className="mx-auto grid max-w-md grid-cols-3">
         {items.map((item) => {
             const isActive = pathname === item.href
