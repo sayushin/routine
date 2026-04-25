@@ -5,10 +5,22 @@ import { supabase } from "@/lib/supabase"
 
 type Props = {
     initialData:any[]
+    totalTraining:number
 }
 
-const ResultList = ({ initialData }: Props) => {
+const ResultList = ({ initialData,totalTraining }: Props) => {
 const router = useRouter()
+
+const totalEnglish = initialData.reduce(
+    (sum,item) => sum + Number(item.englishMinutes ?? 0),
+    0
+)
+
+const totalProgramming = initialData.reduce(
+    (sum,item) => sum + Number(item.programmingMinutes ?? 0),
+    0
+)
+
 
 const handleDelete = async (id:number) => {
     const ok = window.confirm('Do you delete the record?')
@@ -46,6 +58,27 @@ const handleUpdate = (item: any) =>{
  <main className="min-h-screen bg-gray-100 p-8">
 <div className="mx-auto max-w-3xl space-y-4">
  <h1 className="text-3xl font-bold">Result</h1>
+ <div className="rounded-xl bg-white p-4 shadow">
+    <h2 className="mb-2 text-xl font-bold">Total</h2>
+    <div className="grid gap-3 grid-cols-3">
+
+<div className="rounded-xl bg-gray-50 shadow text-center p-2">
+    <p><strong>Training:</strong></p>
+    <p>
+    {totalTraining} minutes
+    </p>
+</div>
+<div className="rounded-xl bg-gray-50 shadow text-center p-2">
+    <p><strong>English:</strong></p>
+    <p>{totalEnglish} minutes</p>
+</div>
+<div className="rounded-xl bg-gray-50 shadow text-center p-2">
+    <p><strong>Programming:</strong></p>
+    <p>{totalProgramming} minutes</p>
+</div>
+        </div>
+
+ </div>
 
 {initialData.map((item:any)=> (
 <div key={item.id} className="rounde-xl bg-white p-4 shadow">
