@@ -7,7 +7,7 @@ const Result = async () => {
 const {data,error} = await supabase
 .from('Routine')
 .select('*')
-.order('createAt',{ascending:false})
+.order('date',{ascending:false})
 
 if(error) {
     console.error(error)
