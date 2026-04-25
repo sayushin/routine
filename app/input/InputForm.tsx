@@ -106,17 +106,16 @@ const handleSave = async () => {
   />
 </div>
 
-<div className="grid gap-4 md:grid-cols-4">
+<div className="grid gap-4 md:grid-cols-3">
 
-
-<div>
+  <div>
   <label className="mb-2 block text-sm font-medium text-slate-700">
-    Weight(kg)
+    Training(minute)
   </label>
   <input 
   type="number"
-  value={weight}
-  onChange={(e) => setWeight(e.target.value)}
+  value={trainingMinutes}
+  onChange={(e) => setTrainingMinutes(e.target.value)}
   className="w-full rounded-xl border border-slate-300 bg-white py-3 outline-none transition focus:border-slate-500 p-2"
   />
 </div>
@@ -141,18 +140,6 @@ const handleSave = async () => {
   type="number"
   value={programmingMinutes}
   onChange={(e) => setProgrammingMinutes(e.target.value)}
-  className="w-full rounded-xl border border-slate-300 bg-white py-3 outline-none transition focus:border-slate-500 p-2"
-  />
-</div>
-
-<div>
-  <label className="mb-2 block text-sm font-medium text-slate-700">
-    Training(minute)
-  </label>
-  <input 
-  type="number"
-  value={trainingMinutes}
-  onChange={(e) => setTrainingMinutes(e.target.value)}
   className="w-full rounded-xl border border-slate-300 bg-white py-3 outline-none transition focus:border-slate-500 p-2"
   />
 </div>
