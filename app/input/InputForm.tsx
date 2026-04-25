@@ -26,6 +26,7 @@ useEffect(()=> {
     setWeight(searchParams.get('weight') ?? '')
     setEnglishMinutes(searchParams.get('englishMinutes') ?? '')
     setProgrammingMinutes(searchParams.get('programmingMinutes') ?? '')
+    setTrainingMinutes(searchParams.get('trainingMinutes') ?? '')
     setMemo(searchParams.get('memo') ?? '') 
 },[searchParams])
 

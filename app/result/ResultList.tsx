@@ -48,6 +48,7 @@ const handleUpdate = (item: any) =>{
         weight: String(item.weight ?? ''),
         englishMinutes: String(item.englishMinutes ?? ''),
         programmingMinutes:String(item.programmingMinutes ?? ''),
+        trainingMinutes:String(item.trainingMinutes ?? ''),
         memo:item.memo ?? '',
     })
 
